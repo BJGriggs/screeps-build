@@ -6,22 +6,13 @@
   // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
   "dockerFile": "Dockerfile",
 
-  // Set *default* container specific settings.json values on container create.
-  "settings": {
-    "terminal.integrated.shell.linux": null
-  },
+  "mounts": [
+    // Mount the .ssh directory to the container's /root/.ssh as read-only
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,readonly"
+  ],
 
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [],
-
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
-
-  // Uncomment the next line to run commands after the container is created - for example installing curl.
-  // "postCreateCommand": [""]
-
-  // Uncomment when using a ptrace-based debugger like C++, Go, and Rust
-  // "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
+  // Run commands after the container is created.
+  "postCreateCommand": "chmod 600 /root/.ssh/fox-mb-13 || true; npm install",
 
   "customizations": {
     "vscode": {
