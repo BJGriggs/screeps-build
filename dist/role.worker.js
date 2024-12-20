@@ -3,7 +3,7 @@ const { Harvest } = require('role.worker.harvest');
 const { Storage } = require('role.worker.store');
 const { Build } = require('role.worker.build');
 const { Upgrade } = require('role.worker.upgrade');
-export class Worker {
+class Worker {
     constructor() {
         this.frequency = 1;
         this.harvest = new Harvest();
@@ -67,3 +67,5 @@ export class Worker {
         }
     }
 }
+module.exports = { Worker };
+export {};

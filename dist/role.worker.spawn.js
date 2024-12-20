@@ -1,4 +1,5 @@
-export function workerSpawn(spawnname) {
+"use strict";
+function workerSpawn(spawnname) {
     const newName = String(Game.time);
     console.log('Spawning new Worker: ' + newName);
     Game.spawns[spawnname].spawnCreep([WORK, CARRY, MOVE], newName, {
@@ -6,3 +7,4 @@ export function workerSpawn(spawnname) {
     });
     return;
 }
+module.exports = { workerSpawn };

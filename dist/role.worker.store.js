@@ -1,5 +1,5 @@
 const filter = require('lodash');
-export class Storage {
+class Storage {
     constructor() {
         this.assigned = 1;
         this.success = [OK];
@@ -51,3 +51,5 @@ export class Storage {
         creep.memory.taskId = '';
     }
 }
+module.exports = { Storage };
+export {};

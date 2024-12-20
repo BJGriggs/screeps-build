@@ -7,7 +7,7 @@ interface EnergyStructure extends Structure {
   store: StoreDefinition
 }
 
-export class Storage {
+class Storage {
   assigned: number
   success: number[]
   advance: number[]
@@ -80,3 +80,5 @@ export class Storage {
     creep.memory.taskId = ''
   }
 }
+
+module.exports = { Storage }

@@ -1,4 +1,5 @@
-export function memCreepClean() {
+"use strict";
+function memCreepClean() {
     for (var i in Memory.creeps) {
         if (!Game.creeps[i]) {
             delete Memory.creeps[i];
@@ -6,3 +7,4 @@ export function memCreepClean() {
     }
     console.log('Creep Memory Cleaning...');
 }
+module.exports = { memCreepClean };

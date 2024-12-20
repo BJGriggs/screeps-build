@@ -33,3 +33,4 @@ export class Upgrade {
         creep.memory.taskId = '';
     }
 }
+module.exports = { Upgrade };

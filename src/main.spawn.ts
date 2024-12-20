@@ -3,7 +3,7 @@ const { memCreepClean } = require('mem.creepclean')
 const { workerSpawn } = require('role.worker.spawn')
 const filter = require('lodash')
 
-export class SpawnControl {
+class SpawnControl {
     sourceWorkerMultiplier: number
 
     constructor() {
@@ -39,3 +39,4 @@ export class SpawnControl {
         memCreepClean()
     }
 }
+module.exports = { SpawnControl }

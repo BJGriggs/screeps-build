@@ -1,5 +1,5 @@
 const filter = require('lodash');
-export class Build {
+class Build {
     constructor() {
         this.assigned = 1;
         this.success = [OK];
@@ -45,3 +45,5 @@ export class Build {
         creep.memory.taskId = '';
     }
 }
+module.exports = { Build };
+export {};

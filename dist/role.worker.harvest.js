@@ -1,5 +1,5 @@
 const filter = require('lodash');
-export class Harvest {
+class Harvest {
     constructor() {
         this.assigned = 2;
         this.success = [OK];
@@ -77,3 +77,5 @@ export class Harvest {
         creep.memory.taskId = '';
     }
 }
+module.exports = { Harvest };
+export {};

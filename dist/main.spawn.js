@@ -1,7 +1,7 @@
 const { memCreepClean } = require('mem.creepclean');
 const { workerSpawn } = require('role.worker.spawn');
 const filter = require('lodash');
-export class SpawnControl {
+class SpawnControl {
     constructor() {
         this.sourceWorkerMultiplier = 3;
     }
@@ -22,3 +22,5 @@ export class SpawnControl {
         memCreepClean();
     }
 }
+module.exports = { SpawnControl };
+export {};

@@ -2,7 +2,7 @@
 import { CreepWorker, WorkerIDs } from '@worker'
 const filter = require('lodash')
 
-export class Harvest {
+class Harvest {
   assigned: number
   success: number[]
   advance: number[]
@@ -109,3 +109,5 @@ export class Harvest {
     creep.memory.taskId = ''
   }
 }
+
+module.exports = { Harvest }

@@ -7,7 +7,7 @@ const { Upgrade } = require('role.worker.upgrade')
 // Type imports
 import { CreepWorker } from '@worker'
 
-export class Worker {
+class Worker {
   frequency: number
   harvest: typeof Harvest
   store: typeof Storage
@@ -83,3 +83,5 @@ export class Worker {
     }
   }
 }
+
+module.exports = { Worker }
