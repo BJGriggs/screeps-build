@@ -1,33 +1,36 @@
-const Worker = require('role.worker');
-const worker = new Worker();
-const SpawnControll = require('main.spawn');
-const spawnControll = new SpawnControll();
-const roomData = require('room.sources');
-var roomPlan = require('room.plan');
+import { Worker } from 'role.worker'
+import { SpawnControl } from 'main.spawn'
+import { roomData } from 'room.sources'
+import { roomPlan } from 'room.plan'
+import { OwnedRoom, RoomMemory } from '@room'
+import { CreepWorker } from '@worker'
+
+const worker = new Worker()
+const spawnControl = new SpawnControl()
 
 module.exports.loop = function () {
-
     for (const name in Game.rooms) {
-        const mySpawns = Game.rooms[name].find(FIND_MY_SPAWNS);
-        const currentRoom = Game.rooms[name];
-
+        const mySpawns = Game.rooms[name].find(FIND_MY_SPAWNS)
+        const currentRoom: OwnedRoom = Game.rooms[name] as OwnedRoom
 
         if (currentRoom.memory.sources === undefined) {
-            roomData(currentRoom);
+            roomData(currentRoom)
         }
 
         mySpawns.forEach((mySpawn) => {
-            spawnControll.weights(currentRoom, mySpawn.name);
-            roomPlan.findExtension(currentRoom, mySpawn.name);
+            spawnControl.weights(currentRoom, mySpawn.name)
+            roomPlan.findExtension(currentRoom, mySpawn.name)
 
-            // Frequency to excute worker logic
+            // Frequency to execute worker logic
             if (worker.run()) {
-                const units = _.filter(Game.creeps, (creep) => creep.memory.role == 'Worker');
+                const units = _.filter(
+                    Game.creeps,
+                    (creep: CreepWorker) => creep.memory.role == 'Worker',
+                )
                 for (const unit of units) {
-                    worker.exe(unit);
+                    worker.exe(unit)
                 }
             }
-
-        });
+        })
     }
 }

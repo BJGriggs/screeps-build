@@ -6,13 +6,8 @@
   // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
   "dockerFile": "Dockerfile",
 
-  "mounts": [
-    // Mount the .ssh directory to the container's /root/.ssh as read-only
-    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,readonly"
-  ],
-
   // Run commands after the container is created.
-  "postCreateCommand": "chmod 600 /root/.ssh/fox-mb-13 || true; npm install",
+  "postCreateCommand": "npm install && npm install @types/screeps && npm i --save-dev @types/node",
 
   "customizations": {
     "vscode": {
