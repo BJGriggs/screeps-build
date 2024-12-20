@@ -29,5 +29,8 @@
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@types/screeps": "^3.3.8"
   }
 }

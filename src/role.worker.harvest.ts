@@ -1,4 +1,15 @@
-class Harvest {
+
+// Type imports
+import { CreepWorker, WorkerIDs } from '@worker';
+
+export class Harvest {
+
+    assigned: number;
+    success: number[];
+    advance: number[];
+    failedMove: number[];
+    failedMovesAllowed: number;
+
     constructor() {
         this.assigned = 2;
         this.success = [OK];
@@ -7,8 +18,8 @@ class Harvest {
         this.failedMovesAllowed = 2;
     }
 
-    exe(creep, target) {
-        if (creep.carry.energy == creep.carryCapacity) {
+    exe(creep: CreepWorker, target: WorkerIDs): void {
+        if (creep.store.getUsedCapacity(RESOURCE_ENERGY) >= creep.store.getCapacity(RESOURCE_ENERGY)) {
             this.reset(creep);
             return;
         }
@@ -22,12 +33,12 @@ class Harvest {
         }
     }
 
-    targets(creep) {
+    targets(creep: CreepWorker): WorkerIDs[] {
         // Define local variables
-        let targets = [];
+        let targets: WorkerIDs = [];
 
-        // If the creep has more than 25% Energy ingore harvesting
-        if (creep.carry.energy > (creep.carryCapacity * .25)) {
+        // If the creep has more than 25% Energy ignore harvesting
+        if (creep.store.getUsedCapacity(RESOURCE_ENERGY) > (creep.store.getCapacity(RESOURCE_ENERGY) * .25)) {
             return targets;
         }
 

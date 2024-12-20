@@ -1,9 +1,20 @@
-const Harvest = require('role.worker.harvest');
-const Storage = require('role.worker.store')
-const Build = require('role.worker.build');
-const Upgrade = require('role.worker.upgrade');
+// Local imports
+import { Harvest } from 'role.worker.harvest';
+import { Storage } from 'role.worker.store';
+import { Build } from 'role.worker.build';
+import { Upgrade } from 'role.worker.upgrade';
 
-class Worker {
+// Type imports
+import { CreepWorker } from '@worker';
+
+export class Worker {
+
+    frequency: number;
+    harvest: Harvest;
+    store: Storage;
+    build: Build;
+    upgrade: Upgrade;
+
     constructor() {
         this.frequency = 1;
         this.harvest = new Harvest();
@@ -12,7 +23,7 @@ class Worker {
         this.upgrade = new Upgrade();
     }
 
-    run() {
+    run(): boolean {
         if (Game.time % this.frequency === 0) {
             return true;
         } else {
@@ -20,7 +31,7 @@ class Worker {
         }
     }
 
-    exe(creep) {
+    exe(creep: CreepWorker): void {
         const task = creep.memory.task;
         const target = Game.getObjectById(creep.memory.taskId);
 
@@ -47,7 +58,7 @@ class Worker {
         }
     }
 
-    logic(creep) {
+    logic(creep: CreepWorker): void {
         const energyTargets = this.harvest.targets(creep);
         if (energyTargets.length > 0) {
             this.harvest.set(creep, energyTargets);
@@ -74,4 +85,3 @@ class Worker {
     }
 
 }
-module.exports = Worker;
