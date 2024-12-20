@@ -1,65 +1,65 @@
 import { CreepWorker, WorkerIDs } from '@worker'
 
 export class Build {
-    assigned: number
-    success: number[]
-    advance: number[]
-    terminate: number[]
+  assigned: number
+  success: number[]
+  advance: number[]
+  terminate: number[]
 
-    constructor() {
-        this.assigned = 1
-        this.success = [OK]
-        this.advance = [ERR_NOT_IN_RANGE]
-        this.terminate = [ERR_INVALID_TARGET, ERR_NOT_ENOUGH_RESOURCES]
+  constructor() {
+    this.assigned = 1
+    this.success = [OK]
+    this.advance = [ERR_NOT_IN_RANGE]
+    this.terminate = [ERR_INVALID_TARGET, ERR_NOT_ENOUGH_RESOURCES]
+  }
+
+  exe(creep: CreepWorker, target: WorkerIDs): void {
+    const result = creep.build(target)
+
+    if (this.success.includes(result)) {
+      return
+    } else if (this.advance.includes(result)) {
+      this.move(creep, target)
+    } else if (this.terminate.includes(result)) {
+      this.reset(creep)
     }
+  }
 
-    exe(creep: CreepWorker, target: WorkerIDs): void {
-        const result = creep.build(target)
+  targets(creep: CreepWorker): ConstructionSite[] {
+    // Define local variables
+    let targets: ConstructionSite[] = []
 
-        if (this.success.includes(result)) {
-            return
-        } else if (this.advance.includes(result)) {
-            this.move(creep, target)
-        } else if (this.terminate.includes(result)) {
-            this.reset(creep)
-        }
-    }
+    // Find all build locations in the room
+    const buildLocations = creep.room.find(FIND_CONSTRUCTION_SITES)
 
-    targets(creep: CreepWorker): ConstructionSite[] {
-        // Define local variables
-        let targets: ConstructionSite[] = []
+    // Add locations that are not already being targeted
+    buildLocations.forEach((location: ConstructionSite) => {
+      if (
+        _.filter(
+          Game.creeps,
+          (creep: CreepWorker) => creep.memory.taskId == location.id,
+        ).length < this.assigned
+      ) {
+        targets.push(location)
+      }
+    })
 
-        // Find all build locations in the room
-        const buildLocations = creep.room.find(FIND_CONSTRUCTION_SITES)
+    return targets
+  }
 
-        // Add locations that are not already being targeted
-        buildLocations.forEach((location: ConstructionSite) => {
-            if (
-                _.filter(
-                    Game.creeps,
-                    (creep: CreepWorker) => creep.memory.taskId == location.id,
-                ).length < this.assigned
-            ) {
-                targets.push(location)
-            }
-        })
+  move(creep: CreepWorker, target: ConstructionSite): void {
+    creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } })
+  }
 
-        return targets
-    }
+  set(creep: CreepWorker, locations: ConstructionSite[]): void {
+    creep.memory.task = 'Building'
+    creep.say('🚧 Building')
+    const target = creep.pos.findClosestByRange(locations)
+    creep.memory.taskId = target.id
+  }
 
-    move(creep: CreepWorker, target: ConstructionSite): void {
-        creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } })
-    }
-
-    set(creep: CreepWorker, locations: ConstructionSite[]): void {
-        creep.memory.task = 'Building'
-        creep.say('🚧 Building')
-        const target = creep.pos.findClosestByRange(locations)
-        creep.memory.taskId = target.id
-    }
-
-    reset(creep: CreepWorker): void {
-        creep.memory.task = 'None'
-        creep.memory.taskId = ''
-    }
+  reset(creep: CreepWorker): void {
+    creep.memory.task = 'None'
+    creep.memory.taskId = ''
+  }
 }

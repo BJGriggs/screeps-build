@@ -1,5 +1,4 @@
 class Layout {
-    constructor() { }
-
+  constructor() {}
 }
 module.exports = Layout

@@ -1,2 +1,2 @@
-var guard = new Object;
-module.exports = guard;
+var guard = new Object()
+module.exports = guard
