@@ -1,8 +1,11 @@
-export function roomData(roomObject) {
+import { OwnedRoom } from "@room"
+import _ from 'lodash'
+
+export function roomData(roomObject: any): void {
   const locations = roomObject.find(FIND_SOURCES)
 
   roomObject.memory.sources = {}
-  locations.forEach((location) => {
+  locations.forEach((location: Source) => {
     const openSlots = _.filter(
       roomObject.lookForAtArea(
         LOOK_TERRAIN,

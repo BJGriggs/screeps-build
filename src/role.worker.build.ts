@@ -37,7 +37,7 @@ export class Build {
       if (
         _.filter(
           Game.creeps,
-          (creep: CreepWorker) => creep.memory.taskId == location.id,
+          (creep: any) => creep.memory.taskId == location.id,
         ).length < this.assigned
       ) {
         targets.push(location)

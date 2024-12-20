@@ -2,8 +2,9 @@ import { Worker } from 'role.worker'
 import { SpawnControl } from 'main.spawn'
 import { roomData } from 'room.sources'
 import { roomPlan } from 'room.plan'
-import { OwnedRoom, RoomMemory } from '@room'
+import { OwnedRoom } from '@room'
 import { CreepWorker } from '@worker'
+import _ from 'lodash'
 
 const worker = new Worker()
 const spawnControl = new SpawnControl()
@@ -25,7 +26,7 @@ module.exports.loop = function () {
       if (worker.run()) {
         const units = _.filter(
           Game.creeps,
-          (creep: CreepWorker) => creep.memory.role == 'Worker',
+          (creep: any) => creep.memory.role == 'Worker',
         )
         for (const unit of units) {
           worker.exe(unit)

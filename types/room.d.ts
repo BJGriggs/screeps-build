@@ -1,7 +1,7 @@
 import { inherits } from 'node:util'
 
 type RoomMemory = {
-  sources: Source[]
+  sources: { [key: string]: Source }
 }
 
 export interface OwnedRoom extends Room {

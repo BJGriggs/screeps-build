@@ -17,8 +17,7 @@
         "ms-vscode-remote.remote-containers",
         "esbenp.prettier-vscode",
         "streetsidesoftware.code-spell-checker",
-        "GitHub.copilot",
-        "ms-vsliveshare.vsliveshare"
+        "GitHub.copilot"
       ]
     }
   }

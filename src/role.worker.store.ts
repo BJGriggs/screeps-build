@@ -1,4 +1,5 @@
 import { CreepWorker } from '@worker'
+import _ from 'lodash'
 
 type StructureType = StructureContainer | StructureSpawn | StructureExtension
 
@@ -54,7 +55,7 @@ export class Storage {
       if (
         _.filter(
           Game.creeps,
-          (creep: CreepWorker) => creep.memory.taskId == location.id,
+          (creep: any) => creep.memory.taskId == location.id,
         ).length < this.assigned
       ) {
         targets.push(location)
