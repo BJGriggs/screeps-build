@@ -2,7 +2,6 @@
   "editor.formatOnSave": true,
   "eslint.validate": ["typescript"],
   "files.exclude": {
-    "dist": true,
     "node_modules": true
   }
 }

@@ -1,6 +1,7 @@
 import { CreepWorker, WorkerRole } from '@worker'
 import { memCreepClean } from 'mem.creepclean'
 import { workerSpawn } from 'role.worker.spawn'
+import _ from 'lodash'
 
 export class SpawnControl {
     sourceWorkerMultiplier: number

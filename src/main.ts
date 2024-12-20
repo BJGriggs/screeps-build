@@ -29,7 +29,7 @@ module.exports.loop = function () {
           (creep: any) => creep.memory.role == 'Worker',
         )
         for (const unit of units) {
-          worker.exe(unit)
+          worker.exe(unit as any)
         }
       }
     })

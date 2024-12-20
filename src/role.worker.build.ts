@@ -1,4 +1,5 @@
 import { CreepWorker, WorkerIDs } from '@worker'
+import _ from 'lodash'
 
 export class Build {
   assigned: number
