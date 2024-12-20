@@ -1,5 +1,5 @@
 import { CreepWorker } from '@worker'
-import _ from 'lodash'
+const filter = require('lodash')
 
 type StructureType = StructureContainer | StructureSpawn | StructureExtension
 
@@ -43,7 +43,7 @@ export class Storage {
     let targets: StructureType[] = []
 
     // Find all build locations in the room
-    const storageLocations: StructureType[] = _.filter(
+    const storageLocations: StructureType[] = filter(
       creep.room.find(FIND_MY_STRUCTURES),
       (structure: EnergyStructure) =>
         this.structuresList.includes(structure.structureType) &&
@@ -53,7 +53,7 @@ export class Storage {
     // Add locations that are not already being targeted
     storageLocations.forEach((location: StructureType) => {
       if (
-        _.filter(
+        filter(
           Game.creeps,
           (creep: any) => creep.memory.taskId == location.id,
         ).length < this.assigned

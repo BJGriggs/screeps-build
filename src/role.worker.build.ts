@@ -1,5 +1,5 @@
 import { CreepWorker, WorkerIDs } from '@worker'
-import _ from 'lodash'
+const filter = require('lodash')
 
 export class Build {
   assigned: number
@@ -36,7 +36,7 @@ export class Build {
     // Add locations that are not already being targeted
     buildLocations.forEach((location: ConstructionSite) => {
       if (
-        _.filter(
+        filter(
           Game.creeps,
           (creep: any) => creep.memory.taskId == location.id,
         ).length < this.assigned

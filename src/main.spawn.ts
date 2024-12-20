@@ -1,7 +1,7 @@
 import { CreepWorker, WorkerRole } from '@worker'
-import { memCreepClean } from 'mem.creepclean'
-import { workerSpawn } from 'role.worker.spawn'
-import _ from 'lodash'
+const { memCreepClean } = require('mem.creepclean')
+const { workerSpawn } = require('role.worker.spawn')
+const filter = require('lodash')
 
 export class SpawnControl {
     sourceWorkerMultiplier: number
@@ -16,7 +16,7 @@ export class SpawnControl {
             !Game.spawns[spawnName].spawning
         ) {
             // Check to see if another worker needs spawned
-            const workers = _.filter(
+            const workers = filter(
                 Game.creeps,
                 (creep: any) => creep.memory.role == 'Worker',
             )

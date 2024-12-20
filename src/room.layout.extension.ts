@@ -1,5 +1,5 @@
-import { OwnedRoom, RoomMemory } from '@room'
-import _ from 'lodash'
+import '@room'
+const _ = require('lodash')
 
 export class Extension {
     topRange: number
@@ -56,7 +56,7 @@ export class Extension {
 
         const terrainResults = _.filter(
             roomObject.lookForAtArea(LOOK_TERRAIN, yMax, xMin, yMin, xMax, true),
-            (result) => result.terrain != 'plain',
+            (result: { terrain: string }) => result.terrain != 'plain',
         )
         if (terrainResults.length) {
             return false

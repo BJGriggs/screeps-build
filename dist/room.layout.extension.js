@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import '@room';
+const _ = require('lodash');
 export class Extension {
     constructor() {
         this.topRange = 3;

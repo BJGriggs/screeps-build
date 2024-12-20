@@ -1,4 +1,4 @@
-import _ from 'lodash';
+const filter = require('lodash');
 export class Storage {
     constructor() {
         this.assigned = 1;
@@ -27,11 +27,11 @@ export class Storage {
         // Define local variables
         let targets = [];
         // Find all build locations in the room
-        const storageLocations = _.filter(creep.room.find(FIND_MY_STRUCTURES), (structure) => this.structuresList.includes(structure.structureType) &&
+        const storageLocations = filter(creep.room.find(FIND_MY_STRUCTURES), (structure) => this.structuresList.includes(structure.structureType) &&
             structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
         // Add locations that are not already being targeted
         storageLocations.forEach((location) => {
-            if (_.filter(Game.creeps, (creep) => creep.memory.taskId == location.id).length < this.assigned) {
+            if (filter(Game.creeps, (creep) => creep.memory.taskId == location.id).length < this.assigned) {
                 targets.push(location);
             }
         });

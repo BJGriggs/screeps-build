@@ -1,6 +1,6 @@
 // Type imports
 import { CreepWorker, WorkerIDs } from '@worker'
-import _ from 'lodash'
+const filter = require('lodash')
 
 export class Harvest {
   assigned: number
@@ -54,7 +54,7 @@ export class Harvest {
     energyLocations.forEach((location: Source) => {
       // Check for hostiles
       if (
-        _.filter(location.pos.findInRange(FIND_HOSTILE_CREEPS, 4)).length != 0
+        filter(location.pos.findInRange(FIND_HOSTILE_CREEPS, 4)).length != 0
       ) {
         return
       }
@@ -67,7 +67,7 @@ export class Harvest {
       //    creep.memory.taskId == location.id).length < this.assigned) {
       //    targets.push(location);
       if (
-        _.filter(
+        filter(
           Game.creeps,
           (creep: any) => creep.memory.taskId == location.id,
         ).length < creep.room.memory.sources[location.id]

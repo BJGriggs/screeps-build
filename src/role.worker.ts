@@ -1,18 +1,18 @@
 // Local imports
-import { Harvest } from 'role.worker.harvest'
-import { Storage } from 'role.worker.store'
-import { Build } from 'role.worker.build'
-import { Upgrade } from 'role.worker.upgrade'
+const { Harvest } = require('role.worker.harvest')
+const { Storage } = require('role.worker.store')
+const { Build } = require('role.worker.build')
+const { Upgrade } = require('role.worker.upgrade')
 
 // Type imports
 import { CreepWorker } from '@worker'
 
 export class Worker {
   frequency: number
-  harvest: Harvest
-  store: Storage
-  build: Build
-  upgrade: Upgrade
+  harvest: typeof Harvest
+  store: typeof Storage
+  build: typeof Build
+  upgrade: typeof Upgrade
 
   constructor() {
     this.frequency = 1

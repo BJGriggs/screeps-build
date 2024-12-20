@@ -1,8 +1,8 @@
-import { Worker } from 'role.worker';
-import { SpawnControl } from 'main.spawn';
-import { roomData } from 'room.sources';
-import { roomPlan } from 'room.plan';
-import _ from 'lodash';
+const { Worker } = require('role.worker');
+const { SpawnControl } = require('main.spawn');
+const { roomData } = require('room.sources');
+const { roomPlan } = require('room.plan');
+const filter = require('lodash');
 const worker = new Worker();
 const spawnControl = new SpawnControl();
 module.exports.loop = function () {
@@ -17,7 +17,7 @@ module.exports.loop = function () {
             roomPlan.findExtension(currentRoom, mySpawn.name);
             // Frequency to execute worker logic
             if (worker.run()) {
-                const units = _.filter(Game.creeps, (creep) => creep.memory.role == 'Worker');
+                const units = filter(Game.creeps, (creep) => creep.memory.role == 'Worker');
                 for (const unit of units) {
                     worker.exe(unit);
                 }
@@ -25,3 +25,4 @@ module.exports.loop = function () {
         });
     }
 };
+export {};

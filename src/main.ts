@@ -1,10 +1,10 @@
-import { Worker } from 'role.worker'
-import { SpawnControl } from 'main.spawn'
-import { roomData } from 'room.sources'
-import { roomPlan } from 'room.plan'
+const { Worker } = require('role.worker')
+const { SpawnControl } = require('main.spawn')
+const { roomData } = require('room.sources')
+const { roomPlan } = require('room.plan')
 import { OwnedRoom } from '@room'
 import { CreepWorker } from '@worker'
-import _ from 'lodash'
+const filter = require('lodash')
 
 const worker = new Worker()
 const spawnControl = new SpawnControl()
@@ -24,7 +24,7 @@ module.exports.loop = function () {
 
       // Frequency to execute worker logic
       if (worker.run()) {
-        const units = _.filter(
+        const units = filter(
           Game.creeps,
           (creep: any) => creep.memory.role == 'Worker',
         )

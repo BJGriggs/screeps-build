@@ -1,6 +1,6 @@
-import { memCreepClean } from 'mem.creepclean';
-import { workerSpawn } from 'role.worker.spawn';
-import _ from 'lodash';
+const { memCreepClean } = require('mem.creepclean');
+const { workerSpawn } = require('role.worker.spawn');
+const filter = require('lodash');
 export class SpawnControl {
     constructor() {
         this.sourceWorkerMultiplier = 3;
@@ -9,7 +9,7 @@ export class SpawnControl {
         if (currentRoom.energyAvailable >= 200 &&
             !Game.spawns[spawnName].spawning) {
             // Check to see if another worker needs spawned
-            const workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'Worker');
+            const workers = filter(Game.creeps, (creep) => creep.memory.role == 'Worker');
             const maxWorkers = currentRoom.find(FIND_SOURCES).length * this.sourceWorkerMultiplier;
             if (workers.length < maxWorkers) {
                 workerSpawn(spawnName);

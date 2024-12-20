@@ -1,4 +1,4 @@
-import _ from 'lodash';
+const filter = require('lodash');
 export class Harvest {
     constructor() {
         this.assigned = 2;
@@ -34,7 +34,7 @@ export class Harvest {
         // Add locations that are not already being targeted
         energyLocations.forEach((location) => {
             // Check for hostiles
-            if (_.filter(location.pos.findInRange(FIND_HOSTILE_CREEPS, 4)).length != 0) {
+            if (filter(location.pos.findInRange(FIND_HOSTILE_CREEPS, 4)).length != 0) {
                 return;
             }
             // Check to see if a failed target is the current location
@@ -45,7 +45,7 @@ export class Harvest {
             //if (_.filter(Game.creeps, (creep) =>
             //    creep.memory.taskId == location.id).length < this.assigned) {
             //    targets.push(location);
-            if (_.filter(Game.creeps, (creep) => creep.memory.taskId == location.id).length < creep.room.memory.sources[location.id]) {
+            if (filter(Game.creeps, (creep) => creep.memory.taskId == location.id).length < creep.room.memory.sources[location.id]) {
                 targets.push(location);
             }
         });

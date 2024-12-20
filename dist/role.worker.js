@@ -1,8 +1,8 @@
 // Local imports
-import { Harvest } from 'role.worker.harvest';
-import { Storage } from 'role.worker.store';
-import { Build } from 'role.worker.build';
-import { Upgrade } from 'role.worker.upgrade';
+const { Harvest } = require('role.worker.harvest');
+const { Storage } = require('role.worker.store');
+const { Build } = require('role.worker.build');
+const { Upgrade } = require('role.worker.upgrade');
 export class Worker {
     constructor() {
         this.frequency = 1;

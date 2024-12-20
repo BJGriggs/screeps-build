@@ -1,4 +1,4 @@
-import _ from 'lodash';
+const filter = require('lodash');
 export class Build {
     constructor() {
         this.assigned = 1;
@@ -25,7 +25,7 @@ export class Build {
         const buildLocations = creep.room.find(FIND_CONSTRUCTION_SITES);
         // Add locations that are not already being targeted
         buildLocations.forEach((location) => {
-            if (_.filter(Game.creeps, (creep) => creep.memory.taskId == location.id).length < this.assigned) {
+            if (filter(Game.creeps, (creep) => creep.memory.taskId == location.id).length < this.assigned) {
                 targets.push(location);
             }
         });
