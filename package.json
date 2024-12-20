@@ -1,0 +1,33 @@
+{
+  "name": "screeps-build",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "check-format": "prettier --check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CheeseIndex/screeps-build.git"
+  },
+  "keywords": [],
+  "author": "Benjamin J Griggs, Cheesy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CheeseIndex/screeps-build/issues"
+  },
+  "homepage": "https://github.com/CheeseIndex/screeps-build#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2"
+  }
+}
